@@ -2,28 +2,6 @@
 
 This repo has all the smart contracts that uses Callisto NFT standard.
 
-## Artefin (ART) - Mainnet
-
-### Proxy
-
-- Address: [0x69c878B44fb427cd084125Ce3b76a8Ee4685E78c](https://explorer.callisto.network/address/0x69c878B44fb427cd084125Ce3b76a8Ee4685E78c/transactions)
-- Contract name: NFTUpgradeableProxy
-- Compiler version: v0.8.12+commit.f00d7308
-- EVM Version: default
-- Optimization enabled: true
-- Optimization runs: 200
-- Constructor Arguments:
-
-  ```
-  0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc000000000000000000000000f0714b2137cbebbdd66d01873f855d63d455c0270000000000000000000000007b28236de05318fc4861ba4be1e5932f07336a3500000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000
-  ```
-
-- Implementation Address: [0x390056242E0C230Fa6dA4E88e850E6aDDd6a45ce](https://explorer.callisto.network/address/0x390056242E0C230Fa6dA4E88e850E6aDDd6a45ce/transactions)
-- Contract name: ArtefinNFT
-- Compiler version: v0.8.17+commit.8df45f5f
-- Optimization enabled: true
-- Optimization runs: 1000
-
 ## Alphonse Mucha eMOTION (AME) - Mainnet
 
 ### Proxy
@@ -40,8 +18,58 @@ This repo has all the smart contracts that uses Callisto NFT standard.
   0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc0000000000000000000000004d1d41ae790834d1f165fec53065e6ea44d232650000000000000000000000009640700f2da5d99a201c20d53ee724bc7d829cff00000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000
   ```
 
-- Implementation Address: [0x68201B2a7Cc6706faa994684Ac183D000bbC70bF](https://explorer.callisto.network/address/0x68201B2a7Cc6706faa994684Ac183D000bbC70bF/transactions)
+### Implementation
+
+- Address: [0x68201B2a7Cc6706faa994684Ac183D000bbC70bF](https://explorer.callisto.network/address/0x68201B2a7Cc6706faa994684Ac183D000bbC70bF/transactions)
 - Contract name: MuchaNFT
+- Compiler version: v0.8.17+commit.8df45f5f
+- Optimization enabled: true
+- Optimization runs: 1000
+
+## Artefin (ART) - Mainnet
+
+### Proxy
+
+- Address: [0x69c878B44fb427cd084125Ce3b76a8Ee4685E78c](https://explorer.callisto.network/address/0x69c878B44fb427cd084125Ce3b76a8Ee4685E78c/transactions)
+- Contract name: NFTUpgradeableProxy
+- Compiler version: v0.8.12+commit.f00d7308
+- EVM Version: default
+- Optimization enabled: true
+- Optimization runs: 200
+- Constructor Arguments:
+
+  ```
+  0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc000000000000000000000000f0714b2137cbebbdd66d01873f855d63d455c0270000000000000000000000007b28236de05318fc4861ba4be1e5932f07336a3500000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000
+  ```
+
+### Implementation
+
+- Address: [0x390056242E0C230Fa6dA4E88e850E6aDDd6a45ce](https://explorer.callisto.network/address/0x390056242E0C230Fa6dA4E88e850E6aDDd6a45ce/transactions)
+- Contract name: ArtefinNFT
+- Compiler version: v0.8.17+commit.8df45f5f
+- Optimization enabled: true
+- Optimization runs: 1000
+
+## Callisto Charity (CCNFT) - Mainnet
+
+### Proxy
+
+- Address: [0x096194aa4dFd64b506630149B921015170753a11](https://explorer.callisto.network/address/0x096194aa4dFd64b506630149B921015170753a11/transactions)
+- Contract name: NFTUpgradeableProxy
+- Compiler version: v0.8.12+commit.f00d7308
+- EVM Version: default
+- Optimization enabled: true
+- Optimization runs: 200
+- Constructor Arguments:
+
+  ```
+  000000000000000000000000bcc643d1ed94b2115577594f98f8c6c8c2c9fa270000000000000000000000008c3a198929e8796a09f017d11b56f684679a472100000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000
+  ```
+
+### Implementation
+
+- Address: [0xbBbF5Afe57Fb03214116FDE941cE8D8151953eF3](https://explorer.callisto.network/address/0xbBbF5Afe57Fb03214116FDE941cE8D8151953eF3/transactions)
+- Contract name: CharityNFT
 - Compiler version: v0.8.17+commit.8df45f5f
 - Optimization enabled: true
 - Optimization runs: 1000
