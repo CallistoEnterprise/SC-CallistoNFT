@@ -514,7 +514,8 @@ library Address {
 
 interface ICallistoNFT {
 
-    event NewBid       (uint256 indexed tokenID, uint256 indexed bidAmount, bytes bidData);
+    event NewBid       (uint256 indexed tokenID, uint256 indexed bidAmount, bytes data);
+    event NewPrice     (uint256 indexed tokenID, uint256 indexed priceValue, bytes data);
     event TokenTrade   (uint256 indexed tokenID, address indexed new_owner, address indexed previous_owner, uint256 priceInWEI);
     event Transfer     (address indexed from, address indexed to, uint256 indexed tokenId);
     event TransferData (bytes data);
@@ -564,6 +565,8 @@ abstract contract NFTReceiver {
 contract ExtendedNFT is ICallistoNFT, ReentrancyGuard {
     using Strings for string;
     using Address for address;
+
+    event TokenPropertyUpdated(uint tokenID, uint propertyID);
     
     mapping (uint256 => Properties) private _tokenProperties;
     mapping (uint32 => Fee)         public feeLevels; // level # => (fee receiver, fee percentage)
@@ -669,6 +672,7 @@ contract ExtendedNFT is ICallistoNFT, ReentrancyGuard {
     {
         require(msg.sender == ownerOf(_tokenId), "NFT: only owner can change NFT content");
         _tokenProperties[_tokenId].properties[0] = _content;
+        emit TokenPropertyUpdated(_tokenId, 0) ;
         return true;
     }
 
@@ -677,16 +681,24 @@ contract ExtendedNFT is ICallistoNFT, ReentrancyGuard {
         // Check permission criteria
 
         _tokenProperties[_tokenId].properties.push(_content);
+
+        uint newPropertyID = _tokenProperties[_tokenId].properties.length - 1;
+
+        emit TokenPropertyUpdated(_tokenId, newPropertyID);
     }
 
     function _modifyProperty(uint256 _tokenId, uint256 _propertyId, string calldata _content) internal
     {
         _tokenProperties[_tokenId].properties[_propertyId] = _content;
+
+        emit TokenPropertyUpdated(_tokenId, _propertyId);
     }
 
     function _appendProperty(uint256 _tokenId, uint256 _propertyId, string calldata _content) internal
     {
         _tokenProperties[_tokenId].properties[_propertyId] = _tokenProperties[_tokenId].properties[_propertyId].concat(_content);
+
+        emit TokenPropertyUpdated(_tokenId, _propertyId);
     }
     
     function balanceOf(address owner) public view virtual override returns (uint256) {
@@ -705,6 +717,7 @@ contract ExtendedNFT is ICallistoNFT, ReentrancyGuard {
     function setPrice(uint256 _tokenId, uint256 _amountInWEI, bytes calldata _data) checkTrade(_tokenId, _data) public virtual override nonReentrant {
         require(ownerOf(_tokenId) == msg.sender, "Setting asks is only allowed for owned NFTs!");
         _asks[_tokenId] = _amountInWEI;
+        emit NewPrice(_tokenId, _amountInWEI, _data);
     }
     
     function setBid(uint256 _tokenId, bytes calldata _data) payable checkTrade(_tokenId, _data) public virtual override nonReentrant
@@ -750,6 +763,8 @@ contract ExtendedNFT is ICallistoNFT, ReentrancyGuard {
         
         bool sent = _bidder.send(_bid);
         delete _bids[_tokenId];
+
+        emit NewBid(_tokenId, 0, "0x7769746864726177426964");
         return true;
     }
     
@@ -907,6 +922,9 @@ interface IClassifiedNFT is ICallistoNFT {
 abstract contract ClassifiedNFT is MinterRole, ExtendedNFT, IClassifiedNFT {
     using Strings for string;
 
+    event ClassPropertyUpdated(uint classID, uint propertyID);
+    event TokenClassChanged(uint _tokenID, uint _tokenClass);
+
     mapping (uint256 => string[]) public class_properties;
     mapping (uint256 => uint32)   public class_feeLevel;
     mapping (uint256 => uint256)  public token_classes;
@@ -933,6 +951,7 @@ abstract contract ClassifiedNFT is MinterRole, ExtendedNFT, IClassifiedNFT {
     function setClassForTokenID(uint256 _tokenID, uint256 _tokenClass) public onlyOwner override
     {
         token_classes[_tokenID] = _tokenClass;
+        emit TokenClassChanged(_tokenID, _tokenClass);
     }
 
     function addNewTokenClass(uint32 _feeLevel, string memory _property) public onlyClassAdmin override
@@ -940,6 +959,9 @@ abstract contract ClassifiedNFT is MinterRole, ExtendedNFT, IClassifiedNFT {
         class_properties[nextClassIndex].push(_property);
         class_feeLevel[nextClassIndex] = _feeLevel; // Configures who will receive fees from this class of NFTs
                                                     // Zero sets fees to default address and percentage.
+  
+        emit ClassPropertyUpdated(nextClassIndex, 0); 
+
         nextClassIndex++;
     }
 
@@ -954,6 +976,8 @@ abstract contract ClassifiedNFT is MinterRole, ExtendedNFT, IClassifiedNFT {
     function modifyClassProperty(uint256 _classID, uint256 _propertyID, string memory _content) public onlyClassAdmin onlyExistingClasses(_classID) override
     {
         class_properties[_classID][_propertyID] = _content;
+
+        emit ClassPropertyUpdated(_classID, _propertyID);    
     }
 
     function getClassProperty(uint256 _classID, uint256 _propertyID) public view onlyExistingClasses(_classID) override returns (string memory)
@@ -966,9 +990,13 @@ abstract contract ClassifiedNFT is MinterRole, ExtendedNFT, IClassifiedNFT {
         class_properties[_classID].push("");
     }
 
-    function addClassPropertyWithContent(uint256 _classID, string memory _property) public onlyClassAdmin onlyExistingClasses(_classID)
+    function addClassPropertyWithContent(uint256 _classID, string memory _content) public onlyClassAdmin onlyExistingClasses(_classID)
     {
-        class_properties[_classID].push(_property);
+        class_properties[_classID].push(_content);
+
+        uint newPropertyID = class_properties[_classID].length - 1;
+
+        emit ClassPropertyUpdated(_classID, newPropertyID);    
     }
 
     function getClassProperties(uint256 _classID) public view onlyExistingClasses(_classID) override returns (string[] memory)
@@ -1002,6 +1030,8 @@ abstract contract ClassifiedNFT is MinterRole, ExtendedNFT, IClassifiedNFT {
     function appendClassProperty(uint256 _classID, uint256 _propertyID, string memory _content) public onlyClassAdmin onlyExistingClasses(_classID) override
     {
         class_properties[_classID][_propertyID] = class_properties[_classID][_propertyID].concat(_content);
+
+        emit ClassPropertyUpdated(_classID, _propertyID);   
     }
 }
 

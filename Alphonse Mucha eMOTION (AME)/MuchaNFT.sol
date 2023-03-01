@@ -955,6 +955,7 @@ abstract contract ClassifiedNFT is MinterRole, ExtendedNFT, IClassifiedNFT {
     using Strings for string;
 
     event ClassPropertyUpdated(uint classID, uint propertyID);
+    event TokenClassChanged(uint _tokenID, uint _tokenClass);
 
     mapping (uint256 => string[]) public class_properties;
     mapping (uint256 => uint32)   public class_feeLevel;
@@ -971,6 +972,7 @@ abstract contract ClassifiedNFT is MinterRole, ExtendedNFT, IClassifiedNFT {
     function setClassForTokenID(uint256 _tokenID, uint256 _tokenClass) public onlyOwner override
     {
         token_classes[_tokenID] = _tokenClass;
+        emit TokenClassChanged(_tokenID, _tokenClass);
     }
 
     function addNewTokenClass(uint32 _feeLevel, string memory _property) public onlyOwner override
@@ -1009,6 +1011,15 @@ abstract contract ClassifiedNFT is MinterRole, ExtendedNFT, IClassifiedNFT {
         class_properties[_classID].push("");
     }
 
+    function addClassPropertyWithContent(uint256 _classID, string memory _content) public onlyOwner onlyExistingClasses(_classID)
+    {
+        class_properties[_classID].push(_content);
+
+        uint newPropertyID = class_properties[_classID].length - 1;
+
+        emit ClassPropertyUpdated(_classID, newPropertyID);
+    }
+
     function getClassProperties(uint256 _classID) public view onlyExistingClasses(_classID) override returns (string[] memory)
     {
         return class_properties[_classID];
@@ -1042,15 +1053,6 @@ abstract contract ClassifiedNFT is MinterRole, ExtendedNFT, IClassifiedNFT {
         class_properties[_classID][_propertyID] = class_properties[_classID][_propertyID].concat(_content);
 
         emit ClassPropertyUpdated(_classID, _propertyID);
-    }
-
-    function addClassPropertyWithContent(uint256 _classID, string memory _content) public onlyOwner onlyExistingClasses(_classID)
-    {
-        class_properties[_classID].push(_content);
-
-        uint newPropertyID = class_properties[_classID].length - 1;
-
-        emit ClassPropertyUpdated(_classID, newPropertyID);
     }
 }
 
