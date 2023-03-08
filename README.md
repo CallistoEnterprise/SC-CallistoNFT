@@ -74,7 +74,7 @@ This repo has all the smart contracts that uses Callisto NFT standard.
 - Optimization enabled: true
 - Optimization runs: 1000
 
-## Callisto Charity (CCNFT) - Mainnet
+## The Callistonians (X) - Mainnet
 
 ### Proxy
 
@@ -92,8 +92,8 @@ This repo has all the smart contracts that uses Callisto NFT standard.
 
 ### Implementation
 
-- Address: [0x520Bc37908C3082506bF296b3D36B96b51dCf6f7](https://explorer.callisto.network/address/0x520Bc37908C3082506bF296b3D36B96b51dCf6f7/transactions)
+- Address: [0x13A09EBEB106AdeEd1438869283C9A69bd92f521](https://explorer.callisto.network/address/0x13A09EBEB106AdeEd1438869283C9A69bd92f521/transactions)
 - Contract name: CallistoNFT
-- Compiler version: v0.8.17+commit.8df45f5f
+- Compiler version: v0.8.19+commit.7dd6d404
 - Optimization enabled: true
 - Optimization runs: 1000
