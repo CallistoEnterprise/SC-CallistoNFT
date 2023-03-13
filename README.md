@@ -68,7 +68,7 @@ This repo has all the smart contracts that uses Callisto NFT standard.
 
 ### Implementation
 
-- Address: [0xbBbF5Afe57Fb03214116FDE941cE8D8151953eF3](https://explorer.callisto.network/address/0xbBbF5Afe57Fb03214116FDE941cE8D8151953eF3/transactions)
+- Address: [0x3b8979b8657B5DD8DF3252C1B8Efb270ffDAe959](https://explorer.callisto.network/address/0x3b8979b8657B5DD8DF3252C1B8Efb270ffDAe959/transactions)
 - Contract name: CharityNFT
 - Compiler version: v0.8.17+commit.8df45f5f
 - Optimization enabled: true
