@@ -20,9 +20,9 @@ This repo has all the smart contracts that uses Callisto NFT standard.
 
 ### Implementation
 
-- Address: [0x68201B2a7Cc6706faa994684Ac183D000bbC70bF](https://explorer.callisto.network/address/0x68201B2a7Cc6706faa994684Ac183D000bbC70bF/transactions)
+- Address: [0xD0b120b322B76C859AAC4fA37C4D62C1Ac153711](https://explorer.callisto.network/address/0xD0b120b322B76C859AAC4fA37C4D62C1Ac153711/transactions)
 - Contract name: MuchaNFT
-- Compiler version: v0.8.17+commit.8df45f5f
+- Compiler version: v0.8.19+commit.7dd6d404
 - Optimization enabled: true
 - Optimization runs: 1000
 
@@ -44,9 +44,9 @@ This repo has all the smart contracts that uses Callisto NFT standard.
 
 ### Implementation
 
-- Address: [0x390056242E0C230Fa6dA4E88e850E6aDDd6a45ce](https://explorer.callisto.network/address/0x390056242E0C230Fa6dA4E88e850E6aDDd6a45ce/transactions)
+- Address: [0x8291554624A4135C221ecB94B1ce30B13d4F5F77](https://explorer.callisto.network/address/0x8291554624A4135C221ecB94B1ce30B13d4F5F77/transactions)
 - Contract name: ArtefinNFT
-- Compiler version: v0.8.17+commit.8df45f5f
+- Compiler version: v0.8.19+commit.7dd6d404
 - Optimization enabled: true
 - Optimization runs: 1000
 
