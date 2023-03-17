@@ -540,7 +540,7 @@ contract ExtendedNFT is ICallistoNFT, ReentrancyGuard {
     function _mint(address to, uint256 tokenId) internal virtual {
         require(to != address(0), "NFT: mint to the zero address");
         require(!_exists(tokenId), "NFT: token already minted");
-        require(next_mint_id < 1250, "NFTs sold out");
+        require(next_mint_id < 1500, "NFTs sold out");
 
         _beforeTokenTransfer(address(0), to, tokenId);
 
